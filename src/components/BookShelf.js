@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Book from './Book'
 
 function BookShelf(props) {
@@ -13,7 +13,8 @@ function BookShelf(props) {
               <li key={book.id}>
                 <Book
                   title={book.title}
-                  author={book.author}
+                  authors={book.authors}
+                  bgImage={book.imageLinks.thumbnail}
                   onCategoryChange={onCategoryChange}
                 />
               </li>
