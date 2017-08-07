@@ -1,24 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './components/BookShelf'
-import { update, getAll } from './BooksAPI'
 
 class ListBookPage extends Component {
-  constructor(props) {
-    super(props)
-  }
-  state = {
-    bookList: []
-  }
-  componentDidMount() {
-    getAll().then(data => {
-      this.setState({bookList: data})
-    })
-  }
-  handleCategoryChange = (bookId, category) => {
-    update(bookId, category)
-  }
   render() {
+    let {bookList, handleCategoryChange} = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -28,20 +14,18 @@ class ListBookPage extends Component {
           <div>
             <BookShelf
               title="Currently Reading"
-              bookList={this.state.bookList.filter(book => book.shelf === "currentlyReading")}
-              onCategoryChange={this.handleCagegoryChange}
+              bookList={bookList.filter(book => book.shelf === "currentlyReading")}
+              onCategoryChange={handleCategoryChange}
             />
             <BookShelf
               title="Want To Read"
-              bookList={[]}
-              bookList={this.state.bookList.filter(book => book.shelf === "wantToRead")}
-              onCategoryChange={this.handleCagegoryChange}
+              bookList={bookList.filter(book => book.shelf === "wantToRead")}
+              onCategoryChange={handleCategoryChange}
             />
             <BookShelf
               title="Read"
-              bookList={[]}
-              bookList={this.state.bookList.filter(book => book.shelf === "read")}
-              onCategoryChange={this.handleCagegoryChange}
+              bookList={bookList.filter(book => book.shelf === "read")}
+              onCategoryChange={handleCategoryChange}
             />
           </div>
         </div>

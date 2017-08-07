@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { search } from './BooksAPI'
 import SearchBar from './components/SearchBar'
 import Book from './components/Book'
@@ -12,12 +11,16 @@ class SearchPage extends Component {
   handleSearch = _.debounce((searchText) => {
     if (!!searchText) {
       search(searchText, 10).then(data => {
-        this.setState({
-          searchResult: data.length ? data : []
-        })
+        if (!!data.length)
+        {
+          console.log(data)
+          this.setState({
+            searchResult: data
+          })
+        }
       })
     }
-  }, 300)
+  }, 200)
   render() {
     return (
       <div className="search-books">
@@ -32,7 +35,9 @@ class SearchPage extends Component {
                     authors={book.authors}
                     bgImage={book.imageLinks.thumbnail}
                     shelf={book.shelf}
-                  />
+                    onCategoryChange={(shelf) => {this.props.handleCategoryChange(book, shelf)}}
+                    shelf={book.shelf}
+                  />  
                 </li>
               ))
             }

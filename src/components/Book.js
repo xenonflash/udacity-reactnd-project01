@@ -18,13 +18,13 @@ function Book(props) {
     width: 128,
     height: 193,
   };
-  let { style, title, authors, bgImage, onCategoryChange, id, shelf } = props;
+  let { style, title, authors, bgImage, onCategoryChange, shelf} = props;
   return (
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={Object.assign({}, nativeStyle, style, {background: `url(${bgImage})`})}></div>
         <div className="book-shelf-changer">
-          <select onChange={e => {onCategoryChange(null, id, e.target.value)}} value={shelf}>
+          <select onChange={e => {onCategoryChange(e.target.value)}} value={shelf || 'none'}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>

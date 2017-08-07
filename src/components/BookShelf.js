@@ -15,7 +15,8 @@ function BookShelf(props) {
                   title={book.title}
                   authors={book.authors}
                   bgImage={book.imageLinks.thumbnail}
-                  onCategoryChange={onCategoryChange}
+                  onCategoryChange={(shelf) => {onCategoryChange(book, shelf)}}
+                  shelf={book.shelf}
                 />
               </li>
             ))
