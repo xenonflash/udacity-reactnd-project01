@@ -34,7 +34,6 @@ class SearchPage extends Component {
                     title={book.title}
                     authors={book.authors}
                     bgImage={book.imageLinks.thumbnail}
-                    shelf={book.shelf}
                     onCategoryChange={(shelf) => {this.props.handleCategoryChange(book, shelf)}}
                     shelf={book.shelf}
                   />  
