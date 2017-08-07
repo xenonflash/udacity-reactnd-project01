@@ -13,7 +13,6 @@ class SearchPage extends Component {
       search(searchText, 10).then(data => {
         if (!!data.length)
         {
-          console.log(data)
           this.setState({
             searchResult: data
           })
